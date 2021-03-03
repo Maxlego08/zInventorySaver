@@ -46,6 +46,8 @@ public class ZInventorySaverPlugin extends ZPlugin {
 
 		addListener(new AdapterListener(this));
 		addListener(super.inventoryManager);
+		
+		addListener(new ZInventoryListener(this.inventoryManager));
 
 		/* Add Saver */
 		addSave(Config.getInstance());

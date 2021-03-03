@@ -57,7 +57,8 @@ public class ZInventoryManager extends ZUtils implements InventoryManager {
 			return optional.get();
 
 		PlayerInventory inventory = new ZPlayerInventory(uuid, inventories);
-		return this.playerInventories.put(uuid, inventory);
+		this.playerInventories.put(uuid, inventory);
+		return inventory;
 	}
 
 	@Override

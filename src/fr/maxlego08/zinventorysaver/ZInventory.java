@@ -1,5 +1,6 @@
 package fr.maxlego08.zinventorysaver;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -9,6 +10,7 @@ import com.google.gson.Gson;
 
 import fr.maxlego08.zinventorysaver.api.Inventory;
 import fr.maxlego08.zinventorysaver.zcore.ZPlugin;
+import fr.maxlego08.zinventorysaver.zcore.utils.ItemDecoder;
 
 public class ZInventory implements Inventory {
 
@@ -38,8 +40,10 @@ public class ZInventory implements Inventory {
 
 	@Override
 	public String serialize() {
+		Map<Integer, String> clonedMaps = new HashMap<Integer, String>();
+		items.forEach((k, v) -> clonedMaps.put(k, ItemDecoder.serializeItemStack(v)));
 		Gson gson = ZPlugin.z().getGson();
-		return gson.toJson(this.items);
+		return gson.toJson(clonedMaps);
 	}
 
 	@Override

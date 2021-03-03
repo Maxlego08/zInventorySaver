@@ -33,13 +33,13 @@ public class InsertRunnable implements Runnable {
 
 			Connection connection = this.iConnection.getConnection();
 
-			String request = "INSERT INTO items (id, items, player_id, created_at) VALUES ( ?, ?, ?, ? )";
+			String request = "INSERT INTO players (id, items, player_id, created_at) VALUES ( ?, ?, ?, ? )";
 			PreparedStatement statement = connection.prepareStatement(request);
 
 			statement.setString(1, inventory.getUniqueId().toString());
-			statement.setString(2, playerInventory.getUniqueId().toString());
 			System.out.println("Je serialize: " + inventory.serialize());
-			statement.setString(3, inventory.serialize());
+			statement.setString(2, inventory.serialize());
+			statement.setString(3, playerInventory.getUniqueId().toString());
 			statement.setLong(4, inventory.getCreatedAt());
 
 			statement.executeUpdate();
@@ -47,7 +47,7 @@ public class InsertRunnable implements Runnable {
 			statement.close();
 
 		} catch (SQLException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 	}
