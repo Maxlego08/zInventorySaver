@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import org.bukkit.Bukkit;
 
 import fr.maxlego08.zinventorysaver.ZInventorySaverPlugin;
+import fr.maxlego08.zinventorysaver.api.Inventory;
+import fr.maxlego08.zinventorysaver.api.PlayerInventory;
 import fr.maxlego08.zinventorysaver.api.enums.Script;
 import fr.maxlego08.zinventorysaver.api.storage.IConnection;
 import fr.maxlego08.zinventorysaver.api.storage.IStorage;
@@ -64,8 +66,8 @@ public class SqlStorage implements IStorage {
 					reader.close();
 				}
 
-//				Logger.info("Loading items", LogType.INFO);
-//				iConnection.selectItems(plugin, this, manager);
+				Logger.info("Loading players", LogType.INFO);
+				iConnection.selectItems(plugin, this);
 
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -80,6 +82,16 @@ public class SqlStorage implements IStorage {
 	public void save(Persist persist, ZInventorySaverPlugin plugin) {
 		Logger.info("Database disconnect...");
 		this.iConnection.disconnect();
+	}
+
+	@Override
+	public IConnection getIConnection() {
+		return this.iConnection;
+	}
+
+	@Override
+	public void asyncInsert(PlayerInventory playerInventory, Inventory inventory) {
+		this.iConnection.asyncInsert(playerInventory, inventory);
 	}
 
 }

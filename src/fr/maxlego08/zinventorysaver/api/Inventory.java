@@ -2,6 +2,7 @@ package fr.maxlego08.zinventorysaver.api;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -10,6 +11,8 @@ import org.bukkit.inventory.PlayerInventory;
 import fr.maxlego08.zinventorysaver.ZInventory;
 
 public interface Inventory {
+
+	public UUID getUniqueId();
 
 	/**
 	 * 
@@ -39,7 +42,7 @@ public interface Inventory {
 				items.put(a, itemStack);
 		}
 
-		return new ZInventory(items);
+		return new ZInventory(UUID.randomUUID(), items);
 	}
 
 }

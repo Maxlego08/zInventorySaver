@@ -4,8 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import fr.maxlego08.zinventorysaver.ZInventorySaverPlugin;
+import fr.maxlego08.zinventorysaver.api.Inventory;
+import fr.maxlego08.zinventorysaver.api.PlayerInventory;
 import fr.maxlego08.zinventorysaver.api.storage.IConnection;
+import fr.maxlego08.zinventorysaver.api.storage.IStorage;
 import fr.maxlego08.zinventorysaver.api.storage.Storage;
+import fr.maxlego08.zinventorysaver.runnable.InsertRunnable;
 
 public class ZConnection implements IConnection {
 
@@ -76,6 +81,19 @@ public class ZConnection implements IConnection {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+	}
+
+	@Override
+	public void selectItems(ZInventorySaverPlugin plugin, IStorage sqlStorage) {
+		// todo
+		System.out.println("todo zConnection select");
+	}
+
+	@Override
+	public void asyncInsert(PlayerInventory playerInventory, Inventory inventory) {
+		Runnable runnable = new InsertRunnable(playerInventory, inventory, this);
+		Thread thread = new Thread(runnable);
+		thread.start();
 	}
 
 }

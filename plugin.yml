@@ -1,0 +1,6 @@
+name: zInventorySaver
+author: Maxlego08
+main: fr.maxlego08.zinventorysaver.ZInventorySaverPlugin
+version: 1.0.0.0
+api-version: 1.13
+commands:

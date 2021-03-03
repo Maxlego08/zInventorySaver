@@ -43,6 +43,7 @@ public class ZPlayerInventory implements PlayerInventory {
 
 		Inventory inventory = Inventory.create(player);
 		this.inventories.add(inventory);
+		iStorage.asyncInsert(this, inventory);
 	}
 
 }

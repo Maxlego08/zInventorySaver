@@ -24,7 +24,7 @@ import fr.maxlego08.zinventorysaver.zcore.enums.EnumInventory;
 public class ZInventorySaverPlugin extends ZPlugin {
 
 	private final InventoryManager inventoryManager = new ZInventoryManager(this);
-	private final StorageManager storageManager = new ZStorageManager(this);
+	private StorageManager storageManager;
 
 	@Override
 	public void onEnable() {
@@ -52,6 +52,7 @@ public class ZInventorySaverPlugin extends ZPlugin {
 
 		getSavers().forEach(saver -> saver.load(this.getPersist()));
 
+		this.storageManager = new ZStorageManager(this);
 		this.storageManager.load(this.getPersist());
 
 		postEnable();
