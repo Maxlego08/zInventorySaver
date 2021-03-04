@@ -6,8 +6,11 @@ import fr.maxlego08.zinventorysaver.api.InventoryManager;
 import fr.maxlego08.zinventorysaver.api.storage.IStorage;
 import fr.maxlego08.zinventorysaver.api.storage.StorageManager;
 import fr.maxlego08.zinventorysaver.command.CommandManager;
+import fr.maxlego08.zinventorysaver.command.commands.CommandZInventory;
 import fr.maxlego08.zinventorysaver.inventory.VInventoryManager;
 import fr.maxlego08.zinventorysaver.inventory.inventories.InventoryDefault;
+import fr.maxlego08.zinventorysaver.inventory.inventories.InventoryPlayer;
+import fr.maxlego08.zinventorysaver.inventory.inventories.InventoryPlayers;
 import fr.maxlego08.zinventorysaver.listener.AdapterListener;
 import fr.maxlego08.zinventorysaver.save.Config;
 import fr.maxlego08.zinventorysaver.storage.ZStorageManager;
@@ -41,6 +44,10 @@ public class ZInventorySaverPlugin extends ZPlugin {
 		/* Inventories */
 
 		this.registerInventory(EnumInventory.INVENTORY_DEFAULT, new InventoryDefault());
+		this.registerInventory(EnumInventory.INVENTORY_PLAYERS, new InventoryPlayers());
+		this.registerInventory(EnumInventory.INVENTORY_PLAYER, new InventoryPlayer());
+		
+		this.registerCommand("zinventory", new CommandZInventory(), "zi");
 
 		/* Add Listener */
 

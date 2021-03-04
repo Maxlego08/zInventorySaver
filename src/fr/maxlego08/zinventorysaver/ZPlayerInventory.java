@@ -1,5 +1,6 @@
 package fr.maxlego08.zinventorysaver;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,7 +34,7 @@ public class ZPlayerInventory implements PlayerInventory {
 
 	@Override
 	public List<Inventory> getInventory() {
-		return this.inventories;
+		return Collections.unmodifiableList(this.inventories);
 	}
 
 	@Override

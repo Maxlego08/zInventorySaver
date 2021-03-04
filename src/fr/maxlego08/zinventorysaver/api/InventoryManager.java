@@ -66,4 +66,23 @@ public interface InventoryManager {
 	 */
 	public IStorage getIStorage();
 
+	/**
+	 * 
+	 * @param player
+	 */
+	public void openPlayers(Player player);
+
+	/**
+	 * 
+	 * @return
+	 */
+	public List<PlayerInventory> getPlayers();
+
+	/**
+	 * 
+	 * @param player
+	 * @param playerInventory
+	 */
+	public void openPlayer(Player player, PlayerInventory playerInventory);
+
 }

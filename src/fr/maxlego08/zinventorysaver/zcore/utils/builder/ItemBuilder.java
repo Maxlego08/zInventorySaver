@@ -98,6 +98,17 @@ public class ItemBuilder extends ZUtils implements Cloneable {
 	 * 
 	 * @param material
 	 * @param amount
+	 * @param data
+	 * @param name
+	 */
+	public ItemBuilder(Material material, int amount, int data, String name, String... args) {
+		this(material, data, amount, name, Arrays.asList(args), null, null);
+	}
+
+	/**
+	 * 
+	 * @param material
+	 * @param amount
 	 * @param name
 	 */
 	public ItemBuilder(Material material, int amount, String name) {
@@ -245,6 +256,8 @@ public class ItemBuilder extends ZUtils implements Cloneable {
 
 	@SuppressWarnings("deprecation")
 	public ItemBuilder owner(String name) {
+		if (meta == null)
+			build();
 		if ((material == getMaterial(144)) || (material == getMaterial(397))) {
 			SkullMeta smeta = (SkullMeta) meta;
 			smeta.setOwner(name);

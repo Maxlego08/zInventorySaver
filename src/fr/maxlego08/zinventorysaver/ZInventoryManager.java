@@ -15,6 +15,7 @@ import fr.maxlego08.zinventorysaver.api.InventoryManager;
 import fr.maxlego08.zinventorysaver.api.PlayerInventory;
 import fr.maxlego08.zinventorysaver.api.storage.IStorage;
 import fr.maxlego08.zinventorysaver.zcore.enums.EnumInventory;
+import fr.maxlego08.zinventorysaver.zcore.enums.Message;
 import fr.maxlego08.zinventorysaver.zcore.utils.ZUtils;
 
 public class ZInventoryManager extends ZUtils implements InventoryManager {
@@ -63,7 +64,29 @@ public class ZInventoryManager extends ZUtils implements InventoryManager {
 
 	@Override
 	public void openManager(Player player) {
+		if (!plugin.getStorageManager().isReady()) {
+			message(player, Message.PLUGIN_NOT_READY);
+			return;
+		}
 		super.createInventory(player, EnumInventory.INVENTORY_DEFAULT);
+	}
+
+	@Override
+	public void openPlayers(Player player) {
+		if (!plugin.getStorageManager().isReady()) {
+			message(player, Message.PLUGIN_NOT_READY);
+			return;
+		}
+		super.createInventory(player, EnumInventory.INVENTORY_PLAYERS);
+	}
+	
+	@Override
+	public void openPlayer(Player player, PlayerInventory playerInventory) {
+		if (!plugin.getStorageManager().isReady()) {
+			message(player, Message.PLUGIN_NOT_READY);
+			return;
+		}
+		super.createInventory(player, EnumInventory.INVENTORY_PLAYER, 1, playerInventory);
 	}
 
 	@Override
@@ -77,6 +100,11 @@ public class ZInventoryManager extends ZUtils implements InventoryManager {
 	@Override
 	public IStorage getIStorage() {
 		return this.plugin.getStorage();
+	}
+
+	@Override
+	public List<PlayerInventory> getPlayers() {
+		return new ArrayList<>(this.playerInventories.values());
 	}
 
 }
