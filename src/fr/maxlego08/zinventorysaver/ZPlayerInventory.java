@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import fr.maxlego08.zinventorysaver.api.Inventory;
 import fr.maxlego08.zinventorysaver.api.PlayerInventory;
 import fr.maxlego08.zinventorysaver.api.storage.IStorage;
+import fr.maxlego08.zinventorysaver.save.Config;
 
 public class ZPlayerInventory implements PlayerInventory {
 
@@ -41,6 +42,7 @@ public class ZPlayerInventory implements PlayerInventory {
 		if (lastInventorySave != 0 && lastInventorySave > System.currentTimeMillis() && !force)
 			return;
 
+		this.lastInventorySave = System.currentTimeMillis() + Config.delayBetweenSaveInSecond * 1000;
 		Inventory inventory = Inventory.create(player);
 		this.inventories.add(inventory);
 		iStorage.asyncInsert(this, inventory);
