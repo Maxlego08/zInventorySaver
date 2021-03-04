@@ -3,6 +3,7 @@ package fr.maxlego08.zinventorysaver.inventory.inventories;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
 
@@ -46,6 +47,12 @@ public class InventoryPlayers extends PaginateInventory<PlayerInventory> {
 
 	@Override
 	public void postOpenInventory() {
+
+		ItemButton button = addItem(49, new ItemBuilder(Material.BARRIER, "§cBack"));
+		button.setClick(event -> {
+			InventoryManager inventoryManager = plugin.getManager();
+			inventoryManager.openManager(player);
+		});
 
 	}
 

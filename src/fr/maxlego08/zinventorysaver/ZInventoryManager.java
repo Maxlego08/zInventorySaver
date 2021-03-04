@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import fr.maxlego08.zinventorysaver.api.Inventory;
 import fr.maxlego08.zinventorysaver.api.InventoryManager;
@@ -79,7 +80,7 @@ public class ZInventoryManager extends ZUtils implements InventoryManager {
 		}
 		super.createInventory(player, EnumInventory.INVENTORY_PLAYERS);
 	}
-	
+
 	@Override
 	public void openPlayer(Player player, PlayerInventory playerInventory) {
 		if (!plugin.getStorageManager().isReady()) {
@@ -87,6 +88,15 @@ public class ZInventoryManager extends ZUtils implements InventoryManager {
 			return;
 		}
 		super.createInventory(player, EnumInventory.INVENTORY_PLAYER, 1, playerInventory);
+	}
+
+	@Override
+	public void openInventory(Player player, Inventory object, PlayerInventory playerInventory) {
+		if (!plugin.getStorageManager().isReady()) {
+			message(player, Message.PLUGIN_NOT_READY);
+			return;
+		}
+		super.createInventory(player, EnumInventory.INVENTORY_SHOW_INVENTORY, 1, object, playerInventory);
 	}
 
 	@Override
@@ -105,6 +115,22 @@ public class ZInventoryManager extends ZUtils implements InventoryManager {
 	@Override
 	public List<PlayerInventory> getPlayers() {
 		return new ArrayList<>(this.playerInventories.values());
+	}
+
+	@Override
+	public void updateInventory(Player player, PlayerInventory playerInventory, Inventory inventory,
+			Map<Integer, ItemStack> items) {
+
+		if (items.size() == 0) {
+			message(player, Message.INVENTORY_UPDATE_ERROR);
+			return;
+		}
+
+		message(player, Message.INVENTORY_UPDATE_SUCCESS);
+		inventory.setItems(items);
+		IStorage iStorage = this.getIStorage();
+		iStorage.updateInventory(inventory);
+		this.openPlayer(player, playerInventory);
 	}
 
 }

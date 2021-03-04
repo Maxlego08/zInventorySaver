@@ -36,4 +36,10 @@ public class DefaultStorage implements IStorage {
 		
 	}
 
+	@Override
+	public void updateInventory(Inventory inventory) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -12,6 +12,7 @@ import fr.maxlego08.zinventorysaver.api.storage.IStorage;
 import fr.maxlego08.zinventorysaver.api.storage.Storage;
 import fr.maxlego08.zinventorysaver.runnable.InsertRunnable;
 import fr.maxlego08.zinventorysaver.runnable.SelectRunnable;
+import fr.maxlego08.zinventorysaver.runnable.UpdateRunnable;
 
 public class ZConnection implements IConnection {
 
@@ -94,6 +95,13 @@ public class ZConnection implements IConnection {
 	@Override
 	public void asyncInsert(PlayerInventory playerInventory, Inventory inventory) {
 		Runnable runnable = new InsertRunnable(playerInventory, inventory, this);
+		Thread thread = new Thread(runnable);
+		thread.start();
+	}
+
+	@Override
+	public void asyncUpdate(Inventory inventory) {
+		Runnable runnable = new UpdateRunnable(this, inventory);
 		Thread thread = new Thread(runnable);
 		thread.start();
 	}

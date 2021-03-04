@@ -94,4 +94,9 @@ public class SqlStorage implements IStorage {
 		this.iConnection.asyncInsert(playerInventory, inventory);
 	}
 
+	@Override
+	public void updateInventory(Inventory inventory) {
+		this.iConnection.asyncUpdate(inventory);
+	}
+
 }

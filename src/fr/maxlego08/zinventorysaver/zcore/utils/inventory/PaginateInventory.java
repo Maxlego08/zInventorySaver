@@ -72,12 +72,14 @@ public abstract class PaginateInventory<T> extends VInventory {
 		});
 
 		if (getPage() != 1)
-			addItem(previousSlot, Material.ARROW, "§f» §7Page précédente")
+			addItem(previousSlot, Material.ARROW, "§f» §7Next")
 					.setClick(event -> createInventory(player, getId(), getPage() - 1, args));
 		if (getPage() != getMaxPage(collections))
-			addItem(nextSlot, Material.ARROW, "§f» §7Page suivante")
+			addItem(nextSlot, Material.ARROW, "§f» §7Previous")
 					.setClick(event -> createInventory(player, getId(), getPage() + 1, args));
 
+		
+		
 		postOpenInventory();
 
 		return InventoryResult.SUCCESS;

@@ -5,6 +5,7 @@ public enum EnumInventory {
 	INVENTORY_DEFAULT(1), 
 	INVENTORY_PLAYERS(2), 
 	INVENTORY_PLAYER(3),
+	INVENTORY_SHOW_INVENTORY(4),
 	
 	;
 	

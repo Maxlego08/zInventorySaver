@@ -33,6 +33,9 @@ public enum Message {
 	COMMAND_SYNTAXE_HELP("§a%s §b» §7%s"), 
 	PLUGIN_NOT_READY("§cThe plugin is not yet activated, please wait."),
 	
+	INVENTORY_UPDATE_ERROR("§cNo item in the inventory, impossible to save it."),
+	INVENTORY_UPDATE_SUCCESS("§aYou have just modified the inventory."),
+	
 	
 	;
 

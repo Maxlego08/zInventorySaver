@@ -14,6 +14,8 @@ public interface IStorage {
 	public IConnection getIConnection();
 
 	void asyncInsert(PlayerInventory zPlayerInventory, Inventory inventory);
+
+	void updateInventory(Inventory inventory);
 	
 
 }

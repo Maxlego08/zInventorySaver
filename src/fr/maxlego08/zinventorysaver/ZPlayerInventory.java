@@ -1,6 +1,8 @@
 package fr.maxlego08.zinventorysaver;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,6 +45,9 @@ public class ZPlayerInventory implements PlayerInventory {
 		if (lastInventorySave != 0 && lastInventorySave > System.currentTimeMillis() && !force)
 			return;
 
+		if (Inventory.isInventoryEmpty(player))
+			return;
+
 		this.lastInventorySave = System.currentTimeMillis() + Config.delayBetweenSaveInSecond * 1000;
 		Inventory inventory = Inventory.create(player);
 		this.inventories.add(inventory);
@@ -52,6 +57,13 @@ public class ZPlayerInventory implements PlayerInventory {
 	@Override
 	public void addInventory(Inventory inventory) {
 		this.inventories.add(inventory);
+	}
+
+	@Override
+	public List<Inventory> getSortInventory() {
+		List<Inventory> inventories = new ArrayList<Inventory>(this.inventories);
+		Collections.sort(inventories, Comparator.comparingLong(Inventory::getCreatedAt).reversed());
+		return inventories;
 	}
 
 }

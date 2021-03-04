@@ -25,6 +25,9 @@ public interface Inventory {
 	 * @return long
 	 */
 	public long getCreatedAt();
+	
+	
+	public long getUpdatedAt();
 
 	/**
 	 * 
@@ -32,6 +35,13 @@ public interface Inventory {
 	 */
 	public String serialize();
 
+	public void setItems(Map<Integer, ItemStack> items);
+	
+	/**
+	 * 
+	 * @param player
+	 * @return
+	 */
 	public static Inventory create(Player player) {
 
 		Map<Integer, ItemStack> items = new HashMap<Integer, ItemStack>();
@@ -44,5 +54,22 @@ public interface Inventory {
 
 		return new ZInventory(UUID.randomUUID(), items);
 	}
+
+	/**
+	 * 
+	 * @param player
+	 * @return true if inventory is empty
+	 */
+	public static boolean isInventoryEmpty(Player player) {
+		int numberOfEmptySlot = 0;
+		PlayerInventory inventory = player.getInventory();
+		for (int a = 0; a != 36; a++) {
+			ItemStack itemStack = inventory.getItem(a);
+			if (itemStack == null)
+				numberOfEmptySlot++;
+		}
+		return numberOfEmptySlot == 36;
+	}
+
 
 }

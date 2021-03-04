@@ -14,6 +14,7 @@ public class Config implements Saveable {
 	public static int port = 3306;
 
 	public static boolean saveOnDisconnect = true;
+	public static boolean saveOnDeath = true;
 	public static long delayBetweenSaveInSecond = 60 * 5; // 5 minutes
 
 	/**

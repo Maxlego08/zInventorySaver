@@ -15,8 +15,9 @@ import fr.maxlego08.zinventorysaver.zcore.utils.ItemDecoder;
 public class ZInventory implements Inventory {
 
 	private final UUID uuid;
-	private final Map<Integer, ItemStack> items;
 	private final long createdAt;
+	private long updateAt;
+	private Map<Integer, ItemStack> items;
 
 	/**
 	 * @param items
@@ -26,12 +27,14 @@ public class ZInventory implements Inventory {
 		this.uuid = uuid;
 		this.items = items;
 		this.createdAt = System.currentTimeMillis();
+		this.updateAt = System.currentTimeMillis();
 	}
 
 	@SuppressWarnings("unchecked")
-	public ZInventory(UUID uniqueId, String jsonItems, long createdAt) {
+	public ZInventory(UUID uniqueId, String jsonItems, long createdAt, long updatedAt) {
 		this.uuid = uniqueId;
 		this.createdAt = createdAt;
+		this.updateAt = updatedAt;
 		Gson gson = ZPlugin.z().getGson();
 		Map<String, String> clonedMaps = new HashMap<String, String>();
 		clonedMaps = gson.fromJson(jsonItems, HashMap.class);
@@ -60,6 +63,17 @@ public class ZInventory implements Inventory {
 	@Override
 	public UUID getUniqueId() {
 		return this.uuid;
+	}
+
+	@Override
+	public void setItems(Map<Integer, ItemStack> items) {
+		this.items = items;
+		this.updateAt = System.currentTimeMillis();
+	}
+
+	@Override
+	public long getUpdatedAt() {
+		return this.updateAt;
 	}
 
 }

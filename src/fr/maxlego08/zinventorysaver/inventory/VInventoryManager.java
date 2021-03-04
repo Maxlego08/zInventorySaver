@@ -102,7 +102,7 @@ public class VInventoryManager extends ListenerAdapter {
 			}
 			if (event.getView() != null && gui.getPlayer().equals(player)
 					&& event.getView().getTitle().equals(gui.getGuiName())) {
-				event.setCancelled(true);
+				event.setCancelled(gui.disableClick);
 				ItemButton button = gui.getItems().getOrDefault(event.getSlot(), null);
 				if (button != null)
 					button.onClick(event);

@@ -1,11 +1,13 @@
 package fr.maxlego08.zinventorysaver.api;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import fr.maxlego08.zinventorysaver.api.storage.IStorage;
 
@@ -84,5 +86,22 @@ public interface InventoryManager {
 	 * @param playerInventory
 	 */
 	public void openPlayer(Player player, PlayerInventory playerInventory);
+
+	/**
+	 * 
+	 * @param player
+	 * @param object
+	 */
+	public void openInventory(Player player, Inventory object, PlayerInventory playerInventory);
+
+	/**
+	 * 
+	 * @param player
+	 * @param playerInventory
+	 * @param inventory
+	 * @param items
+	 */
+	public void updateInventory(Player player, PlayerInventory playerInventory, Inventory inventory,
+			Map<Integer, ItemStack> items);
 
 }

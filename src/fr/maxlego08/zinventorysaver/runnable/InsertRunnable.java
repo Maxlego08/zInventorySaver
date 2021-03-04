@@ -33,13 +33,14 @@ public class InsertRunnable implements Runnable {
 
 			Connection connection = this.iConnection.getConnection();
 
-			String request = "INSERT INTO players (id, items, player_id, created_at) VALUES ( ?, ?, ?, ? )";
+			String request = "INSERT INTO players (id, items, player_id, created_at, updated_at) VALUES ( ?, ?, ?, ?, ? )";
 			PreparedStatement statement = connection.prepareStatement(request);
 
 			statement.setString(1, inventory.getUniqueId().toString());
 			statement.setString(2, inventory.serialize());
 			statement.setString(3, playerInventory.getUniqueId().toString());
 			statement.setLong(4, inventory.getCreatedAt());
+			statement.setLong(5, inventory.getUpdatedAt());
 
 			statement.executeUpdate();
 			connection.commit();

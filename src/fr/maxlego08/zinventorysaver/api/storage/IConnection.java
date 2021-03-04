@@ -35,4 +35,6 @@ public interface IConnection {
 
 	public void asyncInsert(PlayerInventory playerInventory, Inventory inventory);
 
+	public void asyncUpdate(Inventory inventory);
+
 }

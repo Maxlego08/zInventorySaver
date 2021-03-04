@@ -20,7 +20,8 @@ public class ZInventoryListener extends ListenerAdapter {
 
 	@Override
 	protected void onQuit(PlayerQuitEvent event, Player player) {
-		inventoryManager.saveInventory(player);
+		if (plugin.getStorageManager().isReady())
+			inventoryManager.saveInventory(player);
 	}
-	
+
 }

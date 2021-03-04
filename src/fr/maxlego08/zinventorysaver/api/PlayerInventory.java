@@ -16,5 +16,7 @@ public interface PlayerInventory {
 	public void saveInventory(Player player, boolean force, IStorage iStorage);
 
 	public void addInventory(Inventory inventory);
+
+	public List<Inventory> getSortInventory();
 	
 }

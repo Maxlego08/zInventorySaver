@@ -53,9 +53,10 @@ public class SelectRunnable implements Runnable {
 				UUID playerUniqueId = UUID.fromString(resultSet.getString("player_id"));
 				String jsonItems = resultSet.getString("items");
 				long createdAt = resultSet.getLong("created_at");
+				long updatedAt = resultSet.getLong("updated_at");
 				
 				PlayerInventory playerInventory = inventoryManager.createPlayerInventory(playerUniqueId);
-				Inventory inventory = new ZInventory(uniqueId, jsonItems, createdAt);
+				Inventory inventory = new ZInventory(uniqueId, jsonItems, createdAt, updatedAt);
 				
 				playerInventory.addInventory(inventory);
 				
