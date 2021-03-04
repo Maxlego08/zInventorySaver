@@ -12,6 +12,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -102,5 +103,8 @@ public abstract class ListenerAdapter extends ZUtils{
 	}
 
 	public void onPlayerWalk(PlayerMoveEvent event, Player player, int i) {
+	}
+
+	public void onPlayerDeath(PlayerDeathEvent event, Player entity) {
 	}
 }

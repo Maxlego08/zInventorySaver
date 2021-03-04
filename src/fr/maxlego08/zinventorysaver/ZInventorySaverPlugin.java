@@ -48,15 +48,14 @@ public class ZInventorySaverPlugin extends ZPlugin {
 		this.registerInventory(EnumInventory.INVENTORY_PLAYERS, new InventoryPlayers());
 		this.registerInventory(EnumInventory.INVENTORY_PLAYER, new InventoryPlayer());
 		this.registerInventory(EnumInventory.INVENTORY_SHOW_INVENTORY, new InventoryShowInventory());
-		
+
 		this.registerCommand("zinventory", new CommandZInventory(), "zi");
 
 		/* Add Listener */
 
 		addListener(new AdapterListener(this));
 		addListener(super.inventoryManager);
-		
-		addListener(new ZInventoryListener(this.inventoryManager));
+
 
 		/* Add Saver */
 		addSave(Config.getInstance());
@@ -65,6 +64,8 @@ public class ZInventorySaverPlugin extends ZPlugin {
 
 		this.storageManager = new ZStorageManager(this);
 		this.storageManager.load(this.getPersist());
+		
+		addListener(new ZInventoryListener(this.inventoryManager, this.storageManager));
 
 		postEnable();
 	}
@@ -88,7 +89,7 @@ public class ZInventorySaverPlugin extends ZPlugin {
 	public IStorage getStorage() {
 		return this.storageManager.getStorage();
 	}
-	
+
 	public StorageManager getStorageManager() {
 		return storageManager;
 	}
