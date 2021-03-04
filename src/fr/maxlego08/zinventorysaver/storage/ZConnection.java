@@ -11,6 +11,7 @@ import fr.maxlego08.zinventorysaver.api.storage.IConnection;
 import fr.maxlego08.zinventorysaver.api.storage.IStorage;
 import fr.maxlego08.zinventorysaver.api.storage.Storage;
 import fr.maxlego08.zinventorysaver.runnable.InsertRunnable;
+import fr.maxlego08.zinventorysaver.runnable.SelectRunnable;
 
 public class ZConnection implements IConnection {
 
@@ -85,8 +86,9 @@ public class ZConnection implements IConnection {
 
 	@Override
 	public void selectItems(ZInventorySaverPlugin plugin, IStorage sqlStorage) {
-		// todo
-		System.out.println("todo zConnection select");
+		Runnable runnable = new SelectRunnable(this, plugin.getManager(), plugin.getStorageManager());
+		Thread thread = new Thread(runnable);
+		thread.start();
 	}
 
 	@Override

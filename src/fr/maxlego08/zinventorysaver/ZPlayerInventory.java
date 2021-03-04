@@ -46,4 +46,9 @@ public class ZPlayerInventory implements PlayerInventory {
 		iStorage.asyncInsert(this, inventory);
 	}
 
+	@Override
+	public void addInventory(Inventory inventory) {
+		this.inventories.add(inventory);
+	}
+
 }

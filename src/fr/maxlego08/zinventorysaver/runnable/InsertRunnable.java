@@ -37,7 +37,6 @@ public class InsertRunnable implements Runnable {
 			PreparedStatement statement = connection.prepareStatement(request);
 
 			statement.setString(1, inventory.getUniqueId().toString());
-			System.out.println("Je serialize: " + inventory.serialize());
 			statement.setString(2, inventory.serialize());
 			statement.setString(3, playerInventory.getUniqueId().toString());
 			statement.setLong(4, inventory.getCreatedAt());

@@ -79,5 +79,9 @@ public class ZInventorySaverPlugin extends ZPlugin {
 	public IStorage getStorage() {
 		return this.storageManager.getStorage();
 	}
+	
+	public StorageManager getStorageManager() {
+		return storageManager;
+	}
 
 }

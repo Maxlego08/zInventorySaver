@@ -28,6 +28,17 @@ public class ZInventory implements Inventory {
 		this.createdAt = System.currentTimeMillis();
 	}
 
+	@SuppressWarnings("unchecked")
+	public ZInventory(UUID uniqueId, String jsonItems, long createdAt) {
+		this.uuid = uniqueId;
+		this.createdAt = createdAt;
+		Gson gson = ZPlugin.z().getGson();
+		Map<String, String> clonedMaps = new HashMap<String, String>();
+		clonedMaps = gson.fromJson(jsonItems, HashMap.class);
+		this.items = new HashMap<>();
+		clonedMaps.forEach((k, v) -> this.items.put(Integer.valueOf(k), ItemDecoder.deserializeItemStack(v)));
+	}
+
 	@Override
 	public Map<Integer, ItemStack> getItemStack() {
 		return this.items;

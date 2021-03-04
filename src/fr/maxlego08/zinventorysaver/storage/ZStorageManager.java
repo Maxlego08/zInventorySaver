@@ -13,6 +13,7 @@ public class ZStorageManager implements StorageManager, Saveable {
 
 	private final ZInventorySaverPlugin plugin;
 	private final IStorage iStorage;
+	private boolean isReady = false;
 
 	/**
 	 * @param storage
@@ -56,6 +57,7 @@ public class ZStorageManager implements StorageManager, Saveable {
 			this.iStorage.load(persist, plugin);
 			break;
 		default:
+			this.isReady = true;
 			break;
 		}
 	}
@@ -63,6 +65,16 @@ public class ZStorageManager implements StorageManager, Saveable {
 	@Override
 	public IStorage getStorage() {
 		return this.iStorage;
+	}
+
+	@Override
+	public void setReady(boolean value) {
+		this.isReady = value;
+	}
+
+	@Override
+	public boolean isReady() {
+		return this.isReady;
 	}
 
 }
