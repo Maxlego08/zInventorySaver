@@ -11,13 +11,14 @@ public class CommandZInventory extends VCommand {
 		this.setConsoleCanUse(false);
 		this.setPermission(Permission.ZINVENTORY_USE);
 		this.setDescription("Open inventory manager");
+		this.addSubCommand(new CommandZInventoryVersion());
 	}
 
 	@Override
 	protected CommandType perform(ZInventorySaverPlugin plugin) {
-		
+
 		plugin.getManager().openManager(player);
-		
+
 		return CommandType.SUCCESS;
 	}
 
