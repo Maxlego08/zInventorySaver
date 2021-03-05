@@ -134,5 +134,12 @@ public interface InventoryManager {
 	 */
 	public void reload(Player player);
 
+	/**
+	 * 
+	 * @param itemStack
+	 * @param player 
+	 */
+	public void alertItem(ItemStack itemStack, Player player);
+
 
 }

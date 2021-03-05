@@ -9,6 +9,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 import fr.maxlego08.zinventorysaver.ZInventory;
+import fr.maxlego08.zinventorysaver.ZInventorySaverPlugin;
+import fr.maxlego08.zinventorysaver.zcore.ZPlugin;
 
 public interface Inventory {
 
@@ -57,12 +59,15 @@ public interface Inventory {
 	 */
 	public static Inventory create(Player player) {
 
+		InventoryManager manager = ((ZInventorySaverPlugin) (ZPlugin.z())).getManager();
 		Map<Integer, ItemStack> items = new HashMap<Integer, ItemStack>();
 		PlayerInventory inventory = player.getInventory();
 		for (int a = 0; a != 36; a++) {
 			ItemStack itemStack = inventory.getItem(a);
-			if (itemStack != null)
+			if (itemStack != null) {
+				manager.alertItem(itemStack, player);
 				items.put(a, itemStack);
+			}
 		}
 
 		return new ZInventory(UUID.randomUUID(), items);

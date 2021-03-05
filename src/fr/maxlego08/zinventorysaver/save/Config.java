@@ -1,7 +1,13 @@
 package fr.maxlego08.zinventorysaver.save;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.Material;
+
 import fr.maxlego08.zinventorysaver.api.storage.Saveable;
 import fr.maxlego08.zinventorysaver.api.storage.Storage;
+import fr.maxlego08.zinventorysaver.zcore.utils.builder.ItemBuilder;
 import fr.maxlego08.zinventorysaver.zcore.utils.storage.Persist;
 
 public class Config implements Saveable {
@@ -17,7 +23,16 @@ public class Config implements Saveable {
 	public static boolean saveOnDeath = true;
 	public static long delayBetweenSaveInSecond = 60 * 5; // 5 minutes
 	public static long deletedInventoryAfterInSecond = 60 * 60 * 24 * 7 * 4; // 1 months
+	
+	public static List<ItemBuilder> exploitDetectorItems = new ArrayList<ItemBuilder>();
 
+	static {
+		
+		exploitDetectorItems.add(new ItemBuilder(Material.BEDROCK));
+		exploitDetectorItems.add(new ItemBuilder(Material.BEACON));
+		
+	}
+	
 	/**
 	 * static Singleton instance.
 	 */

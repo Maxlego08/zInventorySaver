@@ -20,6 +20,7 @@ import fr.maxlego08.zinventorysaver.api.storage.IStorage;
 import fr.maxlego08.zinventorysaver.save.Config;
 import fr.maxlego08.zinventorysaver.zcore.enums.EnumInventory;
 import fr.maxlego08.zinventorysaver.zcore.enums.Message;
+import fr.maxlego08.zinventorysaver.zcore.enums.Permission;
 import fr.maxlego08.zinventorysaver.zcore.utils.ZUtils;
 
 public class ZInventoryManager extends ZUtils implements InventoryManager {
@@ -199,6 +200,22 @@ public class ZInventoryManager extends ZUtils implements InventoryManager {
 		player.closeInventory();
 		Config.getInstance().load(plugin.getPersist());
 		message(player, Message.CONFIG_RELOAD);
+	}
+
+	@Override
+	public void alertItem(ItemStack itemStack, Player target) {
+		boolean needAlert = Config.exploitDetectorItems.stream()
+				.anyMatch(builder -> builder.build().isSimilar(itemStack));
+		if (needAlert) {
+			Bukkit.getOnlinePlayers().forEach(player -> {
+				if (player.hasPermission(Permission.ZINVENTORY_ALERT.getPermission())) {
+
+					String item = "x" + itemStack.getAmount() + " " + getItemName(itemStack);
+					message(player, Message.INVENTORY_ALERT, target.getName(), item);
+
+				}
+			});
+		}
 	}
 
 }
