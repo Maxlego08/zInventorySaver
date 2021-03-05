@@ -31,7 +31,7 @@ public class InventoryPlayer extends PaginateInventory<Inventory> {
 				"",
 				"§f§l» §7UUID§8: §f" + object.getUniqueId(),
 				"§f§l» §7Created at§8: §f" + dateFormat.format(created),
-				"§f§l» §fUpdated at§8: §f" + dateFormat.format(update),
+				"§f§l» §7Updated at§8: §f" + dateFormat.format(update),
 				"",
 				"§8§m-+------------------------------+-"
 				)

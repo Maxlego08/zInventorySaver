@@ -150,20 +150,23 @@ public class ZInventoryManager extends ZUtils implements InventoryManager {
 	}
 
 	@Override
-	public void searchPlayer(Player player, String message) {
+	public boolean searchPlayer(Player player, String message) {
 
 		if (!searchingPlayers.contains(player))
-			return;
+			return false;
 
 		Optional<OfflinePlayer> optional = Arrays.asList(Bukkit.getOfflinePlayers()).stream().filter(offlinePlayer -> {
+			if (offlinePlayer == null)
+				return false;
 			String name = offlinePlayer.getName();
-			return name.equalsIgnoreCase(message) || message.toLowerCase().contains(name.toLowerCase());
+			return name != null
+					&& (name.equalsIgnoreCase(message) || message.toLowerCase().contains(name.toLowerCase()));
 		}).findFirst();
 
 		searchingPlayers.remove(player);
 		if (!optional.isPresent()) {
 			message(player, Message.SEARCH_ERROR, message);
-			return;
+			return true;
 		}
 
 		OfflinePlayer offlinePlayer = optional.get();
@@ -171,10 +174,11 @@ public class ZInventoryManager extends ZUtils implements InventoryManager {
 
 		if (!optional2.isPresent()) {
 			message(player, Message.SEARCH_ERROR_INVENTORY);
-			return;
+			return true;
 		}
 
 		this.openPlayer(player, optional2.get());
+		return true;
 
 	}
 

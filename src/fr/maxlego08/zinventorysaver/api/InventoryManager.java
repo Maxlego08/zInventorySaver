@@ -115,8 +115,12 @@ public interface InventoryManager {
 	 * @param player
 	 * @param message
 	 */
-	public void searchPlayer(Player player, String message);
+	public boolean searchPlayer(Player player, String message);
 	
+	/**
+	 * 
+	 * @param player
+	 */
 	public void removeSearch(Player player);
 
 

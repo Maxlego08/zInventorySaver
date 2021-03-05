@@ -35,12 +35,12 @@ public class ZInventoryListener extends ListenerAdapter {
 		if (storageManager.isReady())
 			inventoryManager.saveInventory(player);
 	}
-	
+
 	@Override
 	protected void onPlayerTalk(AsyncPlayerChatEvent event, String message) {
 		if (storageManager.isReady())
-			inventoryManager.searchPlayer(event.getPlayer(), message);
-		
+			event.setCancelled(inventoryManager.searchPlayer(event.getPlayer(), message));
+
 	}
 
 }
