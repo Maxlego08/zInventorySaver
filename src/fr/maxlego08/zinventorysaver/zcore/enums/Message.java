@@ -40,7 +40,7 @@ public enum Message {
 	SEARCH_ERROR_INVENTORY("§cThe player has no saved inventory."), 
 	
 	CONFIG_RELOAD("§aReload done !"), 
-	INVENTORY_ALERT("§aThe player §f%s §aà §7§n%s§a in his inventory."),
+	INVENTORY_ALERT("§aThe player §f%s §ahas §7§n%s§a in his inventory."),
 	
 	
 	;
