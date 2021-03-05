@@ -2,6 +2,7 @@ package fr.maxlego08.zinventorysaver;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import fr.maxlego08.zinventorysaver.api.InventoryManager;
@@ -33,6 +34,13 @@ public class ZInventoryListener extends ListenerAdapter {
 	public void onPlayerDeath(PlayerDeathEvent event, Player player) {
 		if (storageManager.isReady())
 			inventoryManager.saveInventory(player);
+	}
+	
+	@Override
+	protected void onPlayerTalk(AsyncPlayerChatEvent event, String message) {
+		if (storageManager.isReady())
+			inventoryManager.searchPlayer(event.getPlayer(), message);
+		
 	}
 
 }

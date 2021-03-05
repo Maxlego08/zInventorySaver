@@ -20,7 +20,7 @@ public class InventoryDefault extends VInventory {
 			throws InventoryOpenException {
 		
 		InventoryManager inventoryManager = main.getManager();
-		createInventory("§fz§7Inventory", 54);
+		createInventory("§fz§7Inventory", 27);
 		
 		addItem(10, new ItemBuilder(getMaterial(351), 1, 9, "§fPlayers", 
 				"§8§m-+------------------------------+-",
@@ -30,6 +30,16 @@ public class InventoryDefault extends VInventory {
 				"§8§m-+------------------------------+-"
 				)).setClick(event -> {
 					inventoryManager.openPlayers(player);
+				});
+		
+		addItem(12, new ItemBuilder(getMaterial(351), 1, 8, "§fSearch", 
+				"§8§m-+------------------------------+-",
+				"",
+				"§f§l» §7Click to search for a player",
+				"",
+				"§8§m-+------------------------------+-"
+				)).setClick(event -> {
+					inventoryManager.searchPlayer(player);
 				});
 		
 		return InventoryResult.SUCCESS;

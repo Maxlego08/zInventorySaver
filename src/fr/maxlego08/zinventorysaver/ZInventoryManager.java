@@ -1,12 +1,14 @@
 package fr.maxlego08.zinventorysaver;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -22,6 +24,7 @@ import fr.maxlego08.zinventorysaver.zcore.utils.ZUtils;
 public class ZInventoryManager extends ZUtils implements InventoryManager {
 
 	private final Map<UUID, PlayerInventory> playerInventories = new HashMap<UUID, PlayerInventory>();
+	private final List<Player> searchingPlayers = new ArrayList<>();
 	private final ZInventorySaverPlugin plugin;
 
 	/**
@@ -131,6 +134,53 @@ public class ZInventoryManager extends ZUtils implements InventoryManager {
 		IStorage iStorage = this.getIStorage();
 		iStorage.updateInventory(inventory);
 		this.openPlayer(player, playerInventory);
+	}
+
+	@Override
+	public void searchPlayer(Player player) {
+
+		if (searchingPlayers.contains(player)) {
+			message(player, Message.SEARCH_ALREADY);
+			return;
+		}
+
+		searchingPlayers.add(player);
+		player.closeInventory();
+		message(player, Message.SEARCH_START);
+	}
+
+	@Override
+	public void searchPlayer(Player player, String message) {
+
+		if (!searchingPlayers.contains(player))
+			return;
+
+		Optional<OfflinePlayer> optional = Arrays.asList(Bukkit.getOfflinePlayers()).stream().filter(offlinePlayer -> {
+			String name = offlinePlayer.getName();
+			return name.equalsIgnoreCase(message) || message.toLowerCase().contains(name.toLowerCase());
+		}).findFirst();
+
+		searchingPlayers.remove(player);
+		if (!optional.isPresent()) {
+			message(player, Message.SEARCH_ERROR, message);
+			return;
+		}
+
+		OfflinePlayer offlinePlayer = optional.get();
+		Optional<PlayerInventory> optional2 = this.getInventory(offlinePlayer);
+
+		if (!optional2.isPresent()) {
+			message(player, Message.SEARCH_ERROR_INVENTORY);
+			return;
+		}
+
+		this.openPlayer(player, optional2.get());
+
+	}
+
+	@Override
+	public void removeSearch(Player player) {
+		searchingPlayers.remove(player);
 	}
 
 }

@@ -104,4 +104,20 @@ public interface InventoryManager {
 	public void updateInventory(Player player, PlayerInventory playerInventory, Inventory inventory,
 			Map<Integer, ItemStack> items);
 
+	/**
+	 * 
+	 * @param player
+	 */
+	public void searchPlayer(Player player);
+
+	/**
+	 * 
+	 * @param player
+	 * @param message
+	 */
+	public void searchPlayer(Player player, String message);
+	
+	public void removeSearch(Player player);
+
+
 }

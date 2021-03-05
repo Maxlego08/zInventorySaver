@@ -34,7 +34,12 @@ public enum Message {
 	PLUGIN_NOT_READY("§cThe plugin is not yet activated, please wait."),
 	
 	INVENTORY_UPDATE_ERROR("§cNo item in the inventory, impossible to save it."),
-	INVENTORY_UPDATE_SUCCESS("§aYou have just modified the inventory."),
+	INVENTORY_UPDATE_SUCCESS("§aYou have just modified the inventory."), 
+	
+	SEARCH_ALREADY("§cYou are already looking for a player."), 
+	SEARCH_START("§aWrite the nickname of the player you are looking for in the chat."), 
+	SEARCH_ERROR("§cUnable to find the player §f%s§c."), 
+	SEARCH_ERROR_INVENTORY("§cThe player has no saved inventory."),
 	
 	
 	;
