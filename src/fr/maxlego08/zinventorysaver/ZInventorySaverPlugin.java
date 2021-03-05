@@ -1,5 +1,8 @@
 package fr.maxlego08.zinventorysaver;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.bukkit.plugin.ServicePriority;
 
 import fr.maxlego08.zinventorysaver.api.InventoryManager;
@@ -67,6 +70,14 @@ public class ZInventorySaverPlugin extends ZPlugin {
 		
 		addListener(new ZInventoryListener(this.inventoryManager, this.storageManager));
 
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				inventoryManager.savePlayers();
+			}
+		}, Config.autoSaveInSecond * 1000, Config.autoSaveInSecond * 1000);
+		
 		postEnable();
 	}
 

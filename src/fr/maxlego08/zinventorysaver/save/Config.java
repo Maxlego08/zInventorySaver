@@ -24,6 +24,8 @@ public class Config implements Saveable {
 	public static long delayBetweenSaveInSecond = 60 * 5; // 5 minutes
 	public static long deletedInventoryAfterInSecond = 60 * 60 * 24 * 7 * 4; // 1 months
 	
+	public static long autoSaveInSecond = 60 * 60 * 1;
+	
 	public static List<ItemBuilder> exploitDetectorItems = new ArrayList<ItemBuilder>();
 
 	static {

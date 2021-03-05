@@ -23,7 +23,7 @@ public class InventoryDefault extends VInventory {
 		InventoryManager inventoryManager = main.getManager();
 		createInventory("§fz§7Inventory", 27);
 		
-		addItem(10, new ItemBuilder(getMaterial(351), 1, 9, "§fPlayers", 
+		addItem(10, new ItemBuilder(Material.IRON_INGOT, 1, 0, "§fPlayers", 
 				"§8§m-+------------------------------+-",
 				"",
 				"§f§l» §7Displays the list of players.",
@@ -33,7 +33,7 @@ public class InventoryDefault extends VInventory {
 					inventoryManager.openPlayers(player);
 				});
 		
-		addItem(12, new ItemBuilder(getMaterial(351), 1, 8, "§fSearch", 
+		addItem(12, new ItemBuilder(Material.GOLD_INGOT, 1, 0, "§fSearch", 
 				"§8§m-+------------------------------+-",
 				"",
 				"§f§l» §7Click to search for a player",
@@ -43,7 +43,7 @@ public class InventoryDefault extends VInventory {
 					inventoryManager.searchPlayer(player);
 				});
 		
-		addItem(26, new ItemBuilder(Material.NETHER_STAR, 1, 0, "§fReload", 
+		addItem(26, new ItemBuilder(Material.NETHER_BRICK_STAIRS, 1, 0, "§fReload", 
 				"§8§m-+------------------------------+-",
 				"",
 				"§f§l» §7Click to reload the configuration.",

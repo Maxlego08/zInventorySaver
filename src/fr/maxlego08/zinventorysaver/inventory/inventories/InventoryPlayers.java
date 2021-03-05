@@ -1,11 +1,13 @@
 package fr.maxlego08.zinventorysaver.inventory.inventories;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import fr.maxlego08.zinventorysaver.api.InventoryManager;
 import fr.maxlego08.zinventorysaver.api.PlayerInventory;
@@ -20,17 +22,21 @@ public class InventoryPlayers extends PaginateInventory<PlayerInventory> {
 		this.openAsync = true;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public ItemStack buildItem(PlayerInventory object) {
 
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(object.getUniqueId());
-		ItemBuilder builder = new ItemBuilder(getMaterial(397), 1, 3, "§f" + offlinePlayer.getName());
-		builder.owner(offlinePlayer.getName());
-		builder.setLore("§8§m-+------------------------------+-", "",
-				"§f§l» §7Click to access the §n" + offlinePlayer.getName() + "§7 inventories.", "",
-				"§8§m-+------------------------------+-");
 
-		return builder.build();
+		ItemStack itemStack = playerHead();
+		SkullMeta itemMeta = (SkullMeta) itemStack.getItemMeta();
+		itemMeta.setOwner(offlinePlayer.getName());
+		itemMeta.setDisplayName("§f" + offlinePlayer.getName());
+		itemMeta.setLore(Arrays.asList("§8§m-+------------------------------+-", "",
+				"§f§l» §7Click to access the §n" + offlinePlayer.getName() + "§7 inventories.", "",
+				"§8§m-+------------------------------+-"));
+		itemStack.setItemMeta(itemMeta);
+		return itemStack;
 	}
 
 	@Override

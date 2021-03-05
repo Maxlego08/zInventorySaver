@@ -218,4 +218,9 @@ public class ZInventoryManager extends ZUtils implements InventoryManager {
 		}
 	}
 
+	@Override
+	public void savePlayers() {
+		Bukkit.getOnlinePlayers().forEach(player -> saveInventory(player));
+	}
+
 }

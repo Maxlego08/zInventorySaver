@@ -141,5 +141,10 @@ public interface InventoryManager {
 	 */
 	public void alertItem(ItemStack itemStack, Player player);
 
+	/**
+	 * Saves online players
+	 */
+	public void savePlayers();
+
 
 }
