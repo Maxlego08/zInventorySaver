@@ -123,5 +123,10 @@ public interface InventoryManager {
 	 */
 	public void removeSearch(Player player);
 
+	/**
+	 * Clear inventories
+	 */
+	public void clearExpireInventories();
+
 
 }

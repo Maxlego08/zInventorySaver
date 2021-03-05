@@ -6,6 +6,8 @@ public enum Storage {
 
 	MARIADB("jdbc:mariadb://"), 
 	PGSQL("jdbc:postgresql://"), 
+	
+	CACHE,
 
 	;
 

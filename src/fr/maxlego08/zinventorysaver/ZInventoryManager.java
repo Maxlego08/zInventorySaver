@@ -187,4 +187,10 @@ public class ZInventoryManager extends ZUtils implements InventoryManager {
 		searchingPlayers.remove(player);
 	}
 
+	@Override
+	public void clearExpireInventories() {
+		IStorage iStorage = this.getIStorage();
+		this.playerInventories.values().forEach(players -> players.clearExpireInventories(iStorage));
+	}
+
 }

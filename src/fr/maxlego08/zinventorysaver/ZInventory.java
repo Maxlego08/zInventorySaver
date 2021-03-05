@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import com.google.gson.Gson;
 
 import fr.maxlego08.zinventorysaver.api.Inventory;
+import fr.maxlego08.zinventorysaver.save.Config;
 import fr.maxlego08.zinventorysaver.zcore.ZPlugin;
 import fr.maxlego08.zinventorysaver.zcore.utils.ItemDecoder;
 
@@ -74,6 +75,11 @@ public class ZInventory implements Inventory {
 	@Override
 	public long getUpdatedAt() {
 		return this.updateAt;
+	}
+
+	@Override
+	public boolean hasExpired() {
+		return System.currentTimeMillis() > (this.createdAt + (1000 * Config.delayBetweenSaveInSecond));
 	}
 
 }

@@ -3,8 +3,10 @@ package fr.maxlego08.zinventorysaver;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.bukkit.entity.Player;
 
@@ -35,8 +37,8 @@ public class ZPlayerInventory implements PlayerInventory {
 	}
 
 	@Override
-	public List<Inventory> getInventory() {
-		return Collections.unmodifiableList(this.inventories);
+	public List<Inventory> getInventories() {
+		return this.inventories.stream().filter(e -> !e.hasExpired()).collect(Collectors.toList());
 	}
 
 	@Override
@@ -61,9 +63,21 @@ public class ZPlayerInventory implements PlayerInventory {
 
 	@Override
 	public List<Inventory> getSortInventory() {
-		List<Inventory> inventories = new ArrayList<Inventory>(this.inventories);
+		List<Inventory> inventories = new ArrayList<Inventory>(this.getInventories());
 		Collections.sort(inventories, Comparator.comparingLong(Inventory::getCreatedAt).reversed());
 		return inventories;
+	}
+
+	@Override
+	public void clearExpireInventories(IStorage iStorage) {
+		Iterator<Inventory> iterator = this.inventories.iterator();
+		while (iterator.hasNext()) {
+			Inventory inventory = iterator.next();
+			if (inventory.hasExpired()) {
+				iterator.remove();
+				iStorage.deleteInventory(inventory);
+			}
+		}
 	}
 
 }

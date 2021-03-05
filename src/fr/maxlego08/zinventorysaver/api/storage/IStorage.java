@@ -17,5 +17,7 @@ public interface IStorage {
 
 	void updateInventory(Inventory inventory);
 	
+	void deleteInventory(Inventory inventory);
+	
 
 }

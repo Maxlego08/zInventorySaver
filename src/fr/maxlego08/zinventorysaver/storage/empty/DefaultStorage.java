@@ -42,4 +42,10 @@ public class DefaultStorage implements IStorage {
 		
 	}
 
+	@Override
+	public void deleteInventory(Inventory inventory) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

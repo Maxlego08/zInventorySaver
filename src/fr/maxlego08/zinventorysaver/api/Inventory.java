@@ -25,8 +25,11 @@ public interface Inventory {
 	 * @return long
 	 */
 	public long getCreatedAt();
-	
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	public long getUpdatedAt();
 
 	/**
@@ -35,8 +38,18 @@ public interface Inventory {
 	 */
 	public String serialize();
 
+	/**
+	 * 
+	 * @param items
+	 */
 	public void setItems(Map<Integer, ItemStack> items);
-	
+
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean hasExpired();
+
 	/**
 	 * 
 	 * @param player
@@ -70,6 +83,5 @@ public interface Inventory {
 		}
 		return numberOfEmptySlot == 36;
 	}
-
 
 }

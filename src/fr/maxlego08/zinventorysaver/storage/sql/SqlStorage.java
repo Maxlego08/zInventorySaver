@@ -99,4 +99,9 @@ public class SqlStorage implements IStorage {
 		this.iConnection.asyncUpdate(inventory);
 	}
 
+	@Override
+	public void deleteInventory(Inventory inventory) {
+		this.iConnection.asyncDelete(inventory);
+	}
+
 }

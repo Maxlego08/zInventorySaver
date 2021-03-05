@@ -31,10 +31,30 @@ public interface IConnection {
 	 */
 	public void disconnect();
 
+	/**
+	 * 
+	 * @param plugin
+	 * @param sqlStorage
+	 */
 	public void selectItems(ZInventorySaverPlugin plugin, IStorage sqlStorage);
 
+	/**
+	 * 
+	 * @param playerInventory
+	 * @param inventory
+	 */
 	public void asyncInsert(PlayerInventory playerInventory, Inventory inventory);
 
+	/**
+	 * 
+	 * @param inventory
+	 */
 	public void asyncUpdate(Inventory inventory);
+
+	/**
+	 * 
+	 * @param inventory
+	 */
+	public void asyncDelete(Inventory inventory);
 
 }

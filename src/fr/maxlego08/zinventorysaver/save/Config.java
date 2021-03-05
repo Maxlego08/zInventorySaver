@@ -16,6 +16,7 @@ public class Config implements Saveable {
 	public static boolean saveOnDisconnect = true;
 	public static boolean saveOnDeath = true;
 	public static long delayBetweenSaveInSecond = 60 * 5; // 5 minutes
+	public static long deletedInventoryAfterInSecond = 60 * 60 * 24 * 7 * 4; // 1 months
 
 	/**
 	 * static Singleton instance.

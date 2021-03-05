@@ -66,6 +66,8 @@ public class SelectRunnable implements Runnable {
 			
 			Logger.info("Loading of players successfully completed.", LogType.INFO);
 			storageManager.setReady(true);
+			
+			inventoryManager.clearExpireInventories();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
