@@ -1,5 +1,6 @@
 package fr.maxlego08.zinventorysaver.inventory.inventories;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import fr.maxlego08.zinventorysaver.ZInventorySaverPlugin;
@@ -40,6 +41,16 @@ public class InventoryDefault extends VInventory {
 				"§8§m-+------------------------------+-"
 				)).setClick(event -> {
 					inventoryManager.searchPlayer(player);
+				});
+		
+		addItem(26, new ItemBuilder(Material.NETHER_STAR, 1, 0, "§fReload", 
+				"§8§m-+------------------------------+-",
+				"",
+				"§f§l» §7Click to reload the configuration.",
+				"",
+				"§8§m-+------------------------------+-"
+				)).setClick(event -> {
+					inventoryManager.reload(player);
 				});
 		
 		return InventoryResult.SUCCESS;

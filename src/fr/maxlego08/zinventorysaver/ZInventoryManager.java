@@ -17,6 +17,7 @@ import fr.maxlego08.zinventorysaver.api.Inventory;
 import fr.maxlego08.zinventorysaver.api.InventoryManager;
 import fr.maxlego08.zinventorysaver.api.PlayerInventory;
 import fr.maxlego08.zinventorysaver.api.storage.IStorage;
+import fr.maxlego08.zinventorysaver.save.Config;
 import fr.maxlego08.zinventorysaver.zcore.enums.EnumInventory;
 import fr.maxlego08.zinventorysaver.zcore.enums.Message;
 import fr.maxlego08.zinventorysaver.zcore.utils.ZUtils;
@@ -191,6 +192,13 @@ public class ZInventoryManager extends ZUtils implements InventoryManager {
 	public void clearExpireInventories() {
 		IStorage iStorage = this.getIStorage();
 		this.playerInventories.values().forEach(players -> players.clearExpireInventories(iStorage));
+	}
+
+	@Override
+	public void reload(Player player) {
+		player.closeInventory();
+		Config.getInstance().load(plugin.getPersist());
+		message(player, Message.CONFIG_RELOAD);
 	}
 
 }

@@ -128,5 +128,11 @@ public interface InventoryManager {
 	 */
 	public void clearExpireInventories();
 
+	/**
+	 * 
+	 * @param player
+	 */
+	public void reload(Player player);
+
 
 }

@@ -15,10 +15,8 @@ public enum Message {
 	TELEPORT_SUCCESS("§7Téléportation effectué !"),
 	
 	INVENTORY_NULL("§cImpossible de trouver l'inventaire avec l'id §6%s§c."),
-	INVENTORY_CLONE_NULL("§cLe clone de l'inventaire est null !"),
-	INVENTORY_OPEN_ERROR("§cUne erreur est survenu avec l'ouverture de l'inventaire §6%s§c."),
-	INVENTORY_BUTTON_PREVIOUS("§f» §7Page précédente"),
-	INVENTORY_BUTTON_NEXT("§f» §7Page suivante"),
+	INVENTORY_CLONE_NULL("§cThe clone of the inventory is null !"),
+	INVENTORY_OPEN_ERROR("§cAn error occurred with the opening of the inventory §6%s§c."),
 	
 	TIME_DAY("%02d jour(s) %02d heure(s) %02d minute(s) %02d seconde(s)"),
 	TIME_HOUR("%02d heure(s) %02d minute(s) %02d seconde(s)"),
@@ -26,10 +24,10 @@ public enum Message {
 	TIME_MINUTE("%02d minute(s) %02d seconde(s)"),
 	TIME_SECOND("%02d seconde(s)"),
 	
-	COMMAND_SYNTAXE_ERROR("§cVous devez exécuter la commande comme ceci§7: §a%s"),
-	COMMAND_NO_PERMISSION("§cVous n'avez pas la permission d'exécuter cette commande."),
-	COMMAND_NO_CONSOLE("§cSeul un joueur peut exécuter cette commande."),
-	COMMAND_NO_ARG("§cImpossible de trouver la commande avec ses arguments."),
+	COMMAND_SYNTAXE_ERROR("§cYou have to execute the command like this§7: §a%s"),
+	COMMAND_NO_PERMISSION("§cYou do not have permission to execute this command.."),
+	COMMAND_NO_CONSOLE("§cOnly a player can execute this command."),
+	COMMAND_NO_ARG("§cImpossible to find the command with its arguments."),
 	COMMAND_SYNTAXE_HELP("§a%s §b» §7%s"), 
 	PLUGIN_NOT_READY("§cThe plugin is not yet activated, please wait."),
 	
@@ -39,7 +37,9 @@ public enum Message {
 	SEARCH_ALREADY("§cYou are already looking for a player."), 
 	SEARCH_START("§aWrite the nickname of the player you are looking for in the chat."), 
 	SEARCH_ERROR("§cUnable to find the player §f%s§c."), 
-	SEARCH_ERROR_INVENTORY("§cThe player has no saved inventory."),
+	SEARCH_ERROR_INVENTORY("§cThe player has no saved inventory."), 
+	
+	CONFIG_RELOAD("§aReload done !"),
 	
 	
 	;

@@ -23,9 +23,9 @@ import fr.maxlego08.zinventorysaver.zcore.utils.ZUtils;
  */
 public class ItemBuilder extends ZUtils implements Cloneable {
 
-	private ItemStack item;
+	private transient ItemStack item;
+	private transient ItemMeta meta;
 	private final Material material;
-	private ItemMeta meta;
 	private int data;
 	private int amount;
 	private String name;
